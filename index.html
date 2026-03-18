@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 Drill#1</title>
+
+
+    <style>
+        body{
+            background-color: rgba(255, 166, 0, 0.368);
+        }
+        .app{
+            width: 400px;
+            height: 100px;
+            background-color: black;
+            color: white;
+            border-radius: 10px;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form>
+            <div style="display: flex; align-items: center; justify-content: center; margin-left: 140px; ">
+                <div style="width: 40%;">
+                    <div class="app">
+                        <h1>Appliance 1</h1>
+                        <input type="number" id="w1" name="watts" placeholder="Input Watts" required>
+                        <input type="number" id="h1" name="watts" placeholder="Input Hours" required>
+                    </div> 
+                    <div class="app">
+                        <h1>Appliance 2</h1>
+                        <input type="number" id="w2" name="watts" placeholder="Input Watts" required>
+                        <input type="number" id="h2" name="watts" placeholder="Input Hours" required>
+                    </div> 
+                </div>
+                <div style="width: 50%;">
+                    <div class="app">
+                        <h1>Appliance 3</h1>
+                        <input type="number" id="w3" name="watts" placeholder="Input Watts" required>
+                        <input type="number" id="h3" name="watts" placeholder="Input Hours" required>
+                    </div> 
+                    <div class="app">
+                        <h1>Appliance 4</h1>
+                        <input type="number" id="w4" name="watts" placeholder="Input Watts" required>
+                        <input type="number" id="h4" name="watts" placeholder="Input Hours" required>
+                    </div>
+                </div> 
+            </div>
+
+           <div style="width: 100%; display: flex; justify-content: center; margin-top: 100px;">
+                <button type="button" onclick="comp(event)" style="padding: 10px; color: black; background-color: orange; border-radius: 20px; font-size: 20px;">COMPUTE</button>
+           </div>
+        </form>
+    </div>
+
+    <script>
+
+
+       function comp(event){
+        event.preventDefault();
+
+        let totalkwh= 0;
+
+        for (let i = 1 ; i <= 4 ; i++){
+            let ww = parseFloat(document.getElementById(`w${i}`).value) || 0;
+            let hh = parseFloat(document.getElementById(`h${i}`).value) || 0;
+
+            if (ww < 0 || hh < 0){
+                alert("Input non-negative values only!");
+                return; // stops the function so we don’t calculate wrong values
+            }
+
+            let kwh = (ww * hh) / 1000;
+            totalkwh += kwh;
+        }
+
+        cop = totalkwh;
+        
+        if (cop >= 0 && cop <= 100){
+            status = "Discounted Electricity Rates "
+        } else if (cop > 100 && cop <= 200){
+            status = "Normal Residential Rate";
+        } else if (cop > 200 && cop <= 300){
+            status = "Typical Electricity Usage"
+        } else if (cop > 300 && cop <= 500){
+            status = "Higher Electricity Usage";
+        } else{
+            status = "Heavy Electricity User";
+        }
+
+        alert("Total kwh : " + totalkwh.toFixed(2) + " Consumption : " + status );
+       }
+    </script>
+</body>
+</html>
